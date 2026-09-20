@@ -258,12 +258,11 @@
         </div>
     </div>
 
-    <audio id="background-music" loop preload="auto" crossorigin="anonymous">
+    <audio id="background-music" loop preload="auto">
         <source src="https://ariya1388h.github.io/Love/music/music.mp3" type="audio/mpeg">
     </audio>
 
     <script>
-        // فارسی فقط اول نمایش داده می‌شود و دیگر تکرار نمی‌شود
         const languages = [
             { text: "You are my good feeling", lang: "english-1", name: "English" },
             { text: "你是我美好的感觉", lang: "chinese", name: "Chinese" },
@@ -313,27 +312,32 @@
         }
 
         function playMusic() {
-            music.muted = false;
-            music.volume = 1.0;
-            music.currentTime = 0;
+            try {
+                music.muted = false;
+                music.volume = 1;
+                music.currentTime = 0;
 
-            const playPromise = music.play();
-            if (playPromise !== undefined) {
-                playPromise
-                    .then(() => {
-                        console.log("Music playing successfully");
-                    })
-                    .catch((err) => {
-                        console.log("Play failed, retrying...", err);
-                        setTimeout(() => {
-                            music.play().catch(e => console.log("Retry failed:", e));
-                        }, 200);
-                    });
+                // چند بار تلاش برای پخش
+                const tryPlay = () => {
+                    const p = music.play();
+                    if (p !== undefined) {
+                        p.catch(() => {
+                            setTimeout(() => {
+                                music.play().catch(() => {});
+                            }, 150);
+                        });
+                    }
+                };
+
+                tryPlay();
+                setTimeout(tryPlay, 100);
+                setTimeout(tryPlay, 300);
+            } catch (e) {
+                console.log(e);
             }
         }
 
         function startExperience(e) {
-            // جلوگیری از حالت دکمه‌ای و هایلایت آبی
             if (e) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -347,14 +351,12 @@
             changeText();
         }
 
-        // رویدادها با جلوگیری از رفتار پیش‌فرض
         document.body.addEventListener("click", startExperience, { passive: false });
         document.body.addEventListener("touchstart", startExperience, { passive: false });
         document.body.addEventListener("touchend", function(e) {
             e.preventDefault();
         }, { passive: false });
 
-        // متن اولیه فارسی فقط یک بار
         window.addEventListener('load', () => {
             messageElement.textContent = "تو همان حس خوبی منی";
             languageNameElement.textContent = "Persian";
@@ -364,3 +366,4 @@
     </script>
 </body>
 </html>
+
