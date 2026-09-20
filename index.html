@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تو همان حس خوبی منی</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            user-select: none;
+            outline: none;
+        }
+
+        @font-face {
+            font-family: 'Bickham Script Pro';
+            src: url('https://ariya1388h.github.io/Love/fonts/BickhamScriptPro.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'FZKai-Z03';
+            src: url('https://ariya1388h.github.io/Love/fonts/FZKai-Z03.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Aref Ruqaa';
+            src: url('https://ariya1388h.github.io/Love/fonts/ArefRuqaa.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'UTM Aquarelle';
+            src: url('https://ariya1388h.github.io/Love/fonts/UTMAquarelle.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Shekasteh';
+            src: url('https://ariya1388h.github.io/Love/fonts/Shekasteh.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Noto Serif KR';
+            src: url('https://ariya1388h.github.io/Love/fonts/NotoSerifKR.ttf') format('truetype');
+        }
+
+        @font-face {
+            font-family: 'Playfair Display Russian';
+            src: url('https://ariya1388h.github.io/Love/fonts/PlayfairDisplayRussian.ttf') format('truetype');
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        body {
+            background: linear-gradient(135deg, #3d0814 0%, #5c1428 25%, #3d0814 50%, #2a050f 75%, #3d0814 100%);
+            background-size: 400% 400%;
+            animation: ambientGradient 15s ease infinite;
+            font-family: 'Shekasteh', 'Bickham Script Pro', cursive, serif;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 50%, rgba(255, 255, 255, 0.05) 0%, transparent 50%),
+                        radial-gradient(circle at 70% 50%, rgba(0, 0, 0, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        @keyframes ambientGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .text-display {
+            text-align: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            min-height: 200px;
+            -webkit-tap-highlight-color: transparent;
+            pointer-events: none;
+        }
+
+        #language-name {
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 15px;
+            letter-spacing: 1px;
+            font-weight: 300;
+            font-family: Georgia, serif;
+            min-height: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            line-height: 1.2;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        #message {
+            font-size: 3.5rem;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: white;
+            margin: 0;
+            padding: 0;
+            animation: smoothFade 0.25s ease-in-out;
+            font-family: 'Shekasteh', cursive, serif;
+            text-shadow: 0 0 30px rgba(0, 0, 0, 0.3);
+            min-height: 5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            line-height: 1.3;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        #message.lang-persian {
+            font-family: 'Shekasteh', serif !important;
+        }
+        #message.lang-english-1, #message.lang-english-2 {
+            font-family: 'Bickham Script Pro', cursive, serif !important;
+        }
+        #message.lang-chinese {
+            font-family: 'FZKai-Z03', serif !important;
+        }
+        #message.lang-spanish {
+            font-family: 'Bickham Script Pro', cursive, serif !important;
+        }
+        #message.lang-arabic-1, #message.lang-arabic-2 {
+            font-family: 'Aref Ruqaa', serif !important;
+        }
+        #message.lang-french {
+            font-family: 'Bickham Script Pro', cursive, serif !important;
+        }
+        #message.lang-portuguese {
+            font-family: 'Bickham Script Pro', cursive, serif !important;
+        }
+        #message.lang-russian {
+            font-family: 'Playfair Display Russian', serif !important;
+            font-size: 2.8rem;
+        }
+        #message.lang-indonesian {
+            font-family: 'Bickham Script Pro', cursive, serif !important;
+        }
+        #message.lang-german {
+            font-family: 'Bickham Script Pro', cursive, serif !important;
+        }
+        #message.lang-vietnamese {
+            font-family: 'UTM Aquarelle', cursive, serif !important;
+        }
+        #message.lang-hausa {
+            font-family: 'Bickham Script Pro', cursive, serif !important;
+        }
+        #message.lang-turkish {
+            font-family: 'Bickham Script Pro', cursive, serif !important;
+        }
+        #message.lang-swahili {
+            font-family: 'Bickham Script Pro', cursive, serif !important;
+        }
+        #message.lang-tagalog {
+            font-family: 'Bickham Script Pro', cursive, serif !important;
+        }
+        #message.lang-korean {
+            font-family: 'Noto Serif KR', serif !important;
+        }
+        #message.lang-javanese {
+            font-family: 'Bickham Script Pro', cursive, serif !important;
+        }
+
+        @keyframes smoothFade {
+            0% { opacity: 0.2; }
+            100% { opacity: 1; }
+        }
+
+        @media (max-width: 768px) {
+            #message {
+                font-size: 2rem;
+                letter-spacing: 1px;
+                min-height: 3rem;
+            }
+            #message.lang-russian {
+                font-size: 1.6rem;
+            }
+            #language-name {
+                font-size: 0.65rem;
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #message {
+                font-size: 1.4rem;
+                letter-spacing: 0.5px;
+                min-height: 2.5rem;
+            }
+            #message.lang-chinese,
+            #message.lang-arabic-1,
+            #message.lang-arabic-2 {
+                font-size: 1.4rem;
+            }
+            #message.lang-russian {
+                font-size: 1.2rem;
+            }
+            #language-name {
+                font-size: 0.55rem;
+                margin-top: 8px;
+            }
+            .container {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="text-display">
+            <h1 id="message" class="lang-persian">تو همان حس خوبی منی</h1>
+            <p id="language-name">Persian</p>
+        </div>
+    </div>
+
+    <audio id="background-music" loop preload="auto" crossorigin="anonymous">
+        <source src="https://ariya1388h.github.io/Love/music/music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // فارسی فقط اول نمایش داده می‌شود و دیگر تکرار نمی‌شود
+        const languages = [
+            { text: "You are my good feeling", lang: "english-1", name: "English" },
+            { text: "你是我美好的感觉", lang: "chinese", name: "Chinese" },
+            { text: "Eres ese buen sentimiento mío", lang: "spanish", name: "Spanish" },
+            { text: "أنت ذلك الشعور الجميل لدي", lang: "arabic-1", name: "Arabic" },
+            { text: "Tu es ce bon sentiment en moi", lang: "french", name: "French" },
+            { text: "Você é esse bom sentimento meu", lang: "portuguese", name: "Portuguese" },
+            { text: "Ты — то хорошее чувство во мне", lang: "russian", name: "Russian" },
+            { text: "Kamu adalah perasaan baikku", lang: "indonesian", name: "Indonesian" },
+            { text: "Du bist dieses gute Gefühl in mir", lang: "german", name: "German" },
+            { text: "You are that warm feeling of mine", lang: "english-2", name: "English" },
+            { text: "إنت الإحساس الحلو بتاعي", lang: "arabic-2", name: "Egyptian Arabic" },
+            { text: "Em là cảm giác tốt đẹp của anh", lang: "vietnamese", name: "Vietnamese" },
+            { text: "Kai ne yanayi mai kyau na", lang: "hausa", name: "Hausa" },
+            { text: "Sen o iyi hissimsin", lang: "turkish", name: "Turkish" },
+            { text: "Wewe ni hisia yangu nzuri", lang: "swahili", name: "Swahili" },
+            { text: "Ikaw ang magandang pakiramdam ko", lang: "tagalog", name: "Tagalog" },
+            { text: "너는 나의 좋은 느낌이야", lang: "korean", name: "Korean" },
+            { text: "Kowe iku rasa apikku", lang: "javanese", name: "Javanese" },
+        ];
+
+        let currentIndex = 0;
+        let isRunning = false;
+
+        const messageElement = document.getElementById('message');
+        const languageNameElement = document.getElementById('language-name');
+        const music = document.getElementById("background-music");
+
+        function changeText() {
+            if (!isRunning) return;
+
+            messageElement.style.animation = 'none';
+
+            setTimeout(() => {
+                const currentLanguage = languages[currentIndex];
+                messageElement.textContent = currentLanguage.text;
+                languageNameElement.textContent = currentLanguage.name;
+                messageElement.className = `lang-${currentLanguage.lang}`;
+                messageElement.style.animation = 'smoothFade 0.25s ease-in-out';
+
+                currentIndex = (currentIndex + 1) % languages.length;
+
+                if (isRunning) {
+                    setTimeout(changeText, 321);
+                }
+            }, 10);
+        }
+
+        function playMusic() {
+            music.muted = false;
+            music.volume = 1.0;
+            music.currentTime = 0;
+
+            const playPromise = music.play();
+            if (playPromise !== undefined) {
+                playPromise
+                    .then(() => {
+                        console.log("Music playing successfully");
+                    })
+                    .catch((err) => {
+                        console.log("Play failed, retrying...", err);
+                        setTimeout(() => {
+                            music.play().catch(e => console.log("Retry failed:", e));
+                        }, 200);
+                    });
+            }
+        }
+
+        function startExperience(e) {
+            // جلوگیری از حالت دکمه‌ای و هایلایت آبی
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+
+            if (isRunning) return;
+            isRunning = true;
+
+            playMusic();
+            currentIndex = 0;
+            changeText();
+        }
+
+        // رویدادها با جلوگیری از رفتار پیش‌فرض
+        document.body.addEventListener("click", startExperience, { passive: false });
+        document.body.addEventListener("touchstart", startExperience, { passive: false });
+        document.body.addEventListener("touchend", function(e) {
+            e.preventDefault();
+        }, { passive: false });
+
+        // متن اولیه فارسی فقط یک بار
+        window.addEventListener('load', () => {
+            messageElement.textContent = "تو همان حس خوبی منی";
+            languageNameElement.textContent = "Persian";
+            messageElement.className = "lang-persian";
+            music.load();
+        });
+    </script>
+</body>
+</html>
